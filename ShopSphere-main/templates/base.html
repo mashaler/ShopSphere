@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom Blog - A place to access other's thought</title>
+    
+    {% block style %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav>
+        <div class="upper-nav flex">
+            <ul class="flex">
+                <li>Home</li>
+                <li id="categories">Categories</li>
+            </ul>
+            <ul class="flex">
+                {% if user.is_authenticated %}
+                <a href="logout"><li>Welcome {{user.username}}</li></a>
+                {% else %}
+                <a href="signin"><li>signIn</li></a>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="bottom-nav flex">
+            <div class="logo">
+                <h1>..Wisdom</h1>
+            </div>
+            <div class="search-bar ">
+                <form action="search" method="get">
+                    <input type="search" name="search" id="search">
+                    <button type="submit">search</button>
+                </form>
+            </div>
+            <div class="bookmark"><button><a href="cart">Cart</a></button></div>
+        </div>
+        <div class="ham-menu">
+            <div class="ham-bar"></div>
+            <div class="ham-bar"></div>
+            <div class="ham-bar"></div>
+        </div>
+    </nav>
+   
+    <div class="nav-cat center">
+        <div class="cat-menu flex-col">
+            <div>Track Pant</div>
+            <div>Jeans</div>
+            <div>Shirt</div>
+            <div>T-shirt</div>
+            <div>Hoodies</div>
+        </div>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <footer>
+        <div class="news-letter center">
+            <form action="/" class="center">
+                <input type="text" placeholder="Subscribe For News Letter">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div class="footer-detail center flex-col">
+            <h2>Wisdom</h2>
+            <p>&copy; Copywright 2023 , All Copywright is reserverd</p>
+
+        </div>
+
+    </footer>
+</body>

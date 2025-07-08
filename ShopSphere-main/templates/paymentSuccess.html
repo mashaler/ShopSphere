@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'payment.css' %}?{% now 'U' %}">
+{% endblock %}
+{% block body %}
+<div class="payment-success">
+
+    <h2>Thanks for purchasing with us</h2>
+    <button>Back to Shop</button>
+</div>
+
+{% endblock %}

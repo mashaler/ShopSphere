@@ -1,0 +1,159 @@
+.cart-heading{
+    width: 100%;
+    height: 10vh;
+}
+.cart-heading h2{
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+main{
+    width: 100%;
+    height: 80vh;
+
+}
+.cart-container{
+    width: 70%;
+    height: 100%;
+    padding-left: 2rem;
+    gap: .8rem;
+    overflow: scroll;
+}
+.cart-container::-webkit-scrollbar{
+    display: none;
+}
+.price-container{
+    width: 30%;
+    height: 100%;
+    gap: 3rem;
+    align-items: center;
+   
+}
+.cart-card{
+    width: 90%;
+    height: 12rem;
+    gap: 1rem;
+    background-color: aliceblue;
+    padding-right: 1rem;
+    box-shadow: 2px 2px 3px grey;
+}
+.cart-image{
+    width: 20%;
+    height: 100%;
+}
+.cart-deatil{
+    width: 80%;
+    height: 100%;
+}
+.cart-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.cart-quantity{
+    gap: .2rem;
+}
+.cart-quantity button{
+ padding: .2rem .6rem;
+ background-color: blue;
+ color: white;
+ outline: none;
+ border: none;
+}
+.cart-quantity input{
+    width: 20%;
+    padding: .2rem .1rem;
+    text-align: center;
+}
+.act-btn{
+    height: 100%;
+    gap: 2.5rem;
+}
+.act-btn button{
+    padding: .65rem .95rem;
+    background-color: transparent;
+    border: 2px solid black;
+    font-weight: 600;
+}
+
+
+/* PRICING SECTION */
+
+.coupan-code{
+    width: 95%;
+    height: 30%;
+    border-radius: .8rem .8rem 0 0;
+    box-shadow: 2px 2px 3px grey, -2px -2px 3px grey;
+}
+.coupan-heading{
+    width: 100%;
+    border-radius: .8rem .8rem 0 0;
+    height: 20%;
+    font-size: 1.3rem;
+    font-weight: 500;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+}
+.coupan-input{
+    width: 100%;
+    height: 80%;
+    background-color: aliceblue;
+    justify-content: center;
+    gap: 1rem;
+    padding-left: 1rem;
+}
+.coupan-input input{
+    width: 90%;
+    font-size: 1rem;
+    padding: .3rem .5rem;
+}
+.coupan-input button{
+    padding: .3rem .4rem;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    width: 15%;
+}
+
+
+.payable-amt{
+    width: 95%;
+    height: 38%;
+    background-color: aliceblue;
+    border-radius: .8rem .8rem 0 0;
+    box-shadow: 2px 2px 3px grey, -2px -2px 3px grey;
+}
+.payable-heading{
+    width: 100%;
+    height: 18%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: blue;
+    border-radius: .8rem .8rem 0 0;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+}
+.payable-data{
+    width: 100%;
+    height: 65%;
+    gap: .4rem;
+    border-bottom: 1px solid black;
+}
+.payable-part{
+    width: 100%;
+    padding: .3rem .8rem;
+    justify-content: space-between;
+}
+.payable-part h4{
+    color: grey;
+}
+.payable-part p{
+    font-weight: bolder;
+}
+.overall-payable{
+    width: 100%;
+    height: 10%;
+}

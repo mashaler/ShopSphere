@@ -1,0 +1,287 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main{
+    grid-template-columns: repeat(5, 1fr);
+    height: 100vh;
+    width: 100%;
+    padding: .8rem 0;
+    overflow: hidden;
+
+}
+.image-part{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100%;
+    gap: .7rem;
+    height: 100%;
+}
+.main-img{
+    width: 100%;
+    height: 100%;
+}
+.main-img img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.detail-desc{
+    gap: 2.5rem;
+}
+.desc-part{
+    grid-column-start: 3;
+    grid-column-end: 6;
+    padding: 2.5rem 1.5rem;
+    gap: 1.1rem;
+   
+}
+.header-container{
+    gap: .65rem;
+}
+.header-container>h2{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.price-contain>h2{
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.desc-part p{
+    color: rgb(59, 59, 59);
+    font-size: 1.02rem;
+    width: 100%;
+}
+
+.desc-part .star{
+    font-size: 1.7rem;
+}
+.part{
+    width: 70%;
+}
+.detail{
+    gap: .5rem;
+}
+.part>h4{
+    width: 40%;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.quantity{
+    align-items: center;
+}
+.quantity form{
+    width: 20%;
+}
+.quantity input{
+    width: 100%;
+    text-align: center;
+    padding: .6rem .8rem;
+}
+
+.buttons{
+    gap: .2rem;
+}
+.buttons button{
+    padding: .45rem .8rem;
+    background-color: blue;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    outline: none;
+}
+.color-list{
+    gap: 1rem;
+}
+.col{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: none;
+}
+.orange{
+    color: orange;
+}
+.outline{
+    outline: 2px solid blue;
+    outline-offset: 2px;
+}
+.col:nth-child(1){
+    background-color: brown;
+
+}
+.col:nth-child(2){
+    background-color: red;
+    
+}
+.col:nth-child(3){
+    background-color: blue;
+    
+}
+.size-list{
+    gap: 1rem;
+}
+.si{
+    padding: .6rem;
+    border: 1px solid black;
+    color: grey;
+    font-size: 1.1rem;
+
+}
+.action-btn{
+    width: 100%;
+    margin-top: 2.5rem;
+    gap: 3.8rem;
+}
+.action-btn button{
+    padding: .8rem 1.2rem;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(0, 255, 17);
+    border: none;
+    border-radius: 5rem;
+    outline: none;
+    box-shadow: 2px 2px 2px gray;
+}
+.action-btn button:nth-child(2){
+    background-color: orange;
+}
+
+.action-btn button:active{
+    transform: scale(0.9);
+}
+
+/* RELATED PRODUCT  */
+.rel-heading{
+    height: 18vh;
+    align-items: center;
+    gap: .7rem;
+    padding-left: 2rem;
+}
+.rel-heading h2{
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+.related-prod{
+    height: fit-content;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;;
+    padding: 0 6rem;
+    row-gap: .9rem;
+}
+.rpro-card{
+    height: 19rem;
+    box-shadow: -.5px -.5px 1px grey;
+}
+.rprod-img{
+    width: 100%;
+    height: 75%;
+}
+.rprod-img img{
+    width: 100%;
+    height: 100%;
+}
+.rprod-desc{
+    width: 100%;
+    height: 25%;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+.price{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+/* REVIEW */
+.review{
+    height: 100vh;
+    width: 100%;
+}
+.post-review{
+    height: 50%;
+    width: 100%;
+}
+.post-review form{
+    width: 100%;
+    gap: .4rem;
+    padding-left: 2.5rem;
+
+}
+.post-review textarea{
+    width: 50%;
+    padding: .5rem .8rem;
+    border-radius: .4rem;
+    outline: none;
+
+}
+.post-review .rating{
+    font-size: 2.5rem;
+    color: yellow;
+    cursor: pointer;
+    display: flex;
+}
+
+
+.starInput{
+    display: none;
+}
+.post-review button{
+    background-color: blue;
+    outline: none;
+    padding: .4rem .7rem;
+    color: white;
+    font-weight: 600;
+    width: 7%;
+}
+.read-review{
+    width: 100%;
+    min-height: fit-content;
+    max-height: 50%;
+    overflow: scroll;
+    gap: .6rem;
+}
+.single-review{
+    width: 80%;
+    gap: 0.9rem;
+    margin: auto;
+    
+}
+.detail-review{
+    gap: .4rem;
+    width: 95%;
+}
+.detail-review span{
+    gap: .35rem;
+}
+.user-icon{
+    width: 5%;}
+.user-icon img{
+    width: 100%;
+}
+.date{
+    color: grey;
+}
+
+/* @media screen and (max-width : 1150px) */
+@media screen and (max-width: 1150px) {
+   main{
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+   }
+   .image-part{
+    
+    width: 100vw;
+    height: 50%;
+   }
+   .desc-part{
+   
+    width: 100vw;
+    z-index: 111;
+    height: 100%;
+
+    
+   }
+}

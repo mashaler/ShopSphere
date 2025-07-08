@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'payment.css' %}?{% now 'U' %}">
+{% endblock %}
+{% block body %}
+<section class="toPay center flex-col">
+    <p>Your total value of shopping is ₹{{display_amount}}</p>
+        <button id="rzp-button1">Pay Now</button>
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<form action="/payment" method="post" id="payment_form">
+    {% csrf_token %}
+    <input type="hidden" name="razorpay_payment_id" id="payment_id">
+    <input type="hidden" name="razorpay_order_id" id="order_id">
+    <input type="hidden" name="razorpay_signature" id="signature">
+
+</form>
+
+<!-- <form action="/payment" method="POST">
+    {% csrf_token %}
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="{{ api_key }}"
+        data-amount="{{ amount }}"
+        data-currency="{{ currency }}"
+        data-order_id="{{ order_id }}"
+        data-buttontext="Pay with Razorpay"
+        data-name="Your Company Name"
+        data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami."
+        data-image="https://example.com/your_logo.jpg"
+        data-prefill.name="Gaurav Kumar"
+        data-prefill.email="gaurav.kumar@example.com"
+        data-theme.color="#F37254"
+    ></script>
+</form> -->
+
+<script>
+    var options = {
+        "key": "{{api_key}}", // Enter the Key ID generated from the Dashboard
+        "amount": "{{amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "{{currency}}",
+        "name": "S Fashion",
+        "description": "Test Transaction",
+        "image": "../static/images/coocking.jpg",
+        "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response) {
+
+            document.getElementById("payment_id").value = response.razorpay_payment_id;
+            document.getElementById("order_id").value = response.razorpay_order_id;
+            document.getElementById("signature").value = response.razorpay_signature;
+            document.getElementById("payment_form").submit()
+
+        },
+        "prefill": {
+            "name": "Gaurav Kumar",
+            "email": "gaurav.kumar@example.com",
+            "contact": "9000090000"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+    });
+    document.getElementById('rzp-button1').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+
+
+{% endblock %}

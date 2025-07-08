@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+{% endblock %}
+{% block body %}
+<div class="arrivals-products grid">
+    {% for newProd in allprod %}
+    <div class="prod-cards" >
+        <div class="prod-image">
+            <img src="./media/{{newProd.prod_image}}" alt="" class="imgpr{{newProd.prod_id}}">
+        </div>
+        <div class="prod-desc flex-col center">
+            <h4><a href="detailpro/{{newProd.prod_slug}}">{{newProd.prod_name}}</a></h4>
+            <div class="star">
+                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <h2 class="pricepr{{newProd.prod_id}}">₹{{newProd.prod_price}}</h2>
+            <div class="cart-btn flex">
+                <button class="add-cart" id="pr{{newProd.prod_id}}">cart</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  
+</div>
+{% endblock %}

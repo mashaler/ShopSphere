@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'form.css' %}?{% now 'U' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="full-view center">
+        <div class="signup-container container-form">
+            <h3 class="header">Sign In</h3>
+            <form action="/signup" method="post" class="flex-col">
+                {% csrf_token %}
+                <div class="flex grid two-col">
+                    <div class="flex-col">
+                        <label for="username">First Name</label>
+                        <input type="text" name="fname">
+                    </div>
+                    <div class="flex-col">
+                        <label for="password">Last Name</label>
+                        <input type="text" name="lname">
+                    </div>
+                </div>
+                <div class="flex grid two-col">
+                    <div class="flex-col">
+                        <label for="username">Phone</label>
+                        <input type="tel" name="phone">
+                    </div>
+                    <div class="flex-col">
+                        <label for="password">Email</label>
+                        <input type="email" name="email">
+                    </div>
+                </div>
+                <div>
+                    <div class="flex-col">
+                        <label for="username">Address 1</label>
+                        <input type="text" name="add1">
+                    </div>
+                </div>
+                <div>
+                    <div class="flex-col">
+                        <label for="username">Address 2</label>
+                        <input type="text" name="add2">
+                    </div>
+                </div>
+                <div class="flex grid two-col">
+                    <div class="flex-col">
+                        <label for="username">Pin Code</label>
+                        <input type="number" name="pincode">
+                    </div>
+                    <div class="flex-col">
+                        <label for="password">Create Password</label>
+                        <input type="text" name="password">
+                    </div>
+                </div>
+
+
+                <div><button type="submit">Submit</button></div>
+                <p>Already have an account ? <a href="sigin">signin</a></p>
+            </form>
+        </div>
+
+    </section>
+
+</body>
+<script>
+    let inpt = document.querySelectorAll("input")
+    inpt.forEach((elem)=>{
+        // elem.required = true
+    })
+</script>
+</html>

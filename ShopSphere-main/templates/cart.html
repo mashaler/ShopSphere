@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'cart.css' %}?{% now 'U' %}">
+
+{% endblock %}
+{% block body %}
+<div class="cart-heading">
+    <h2>Your Cart</h2>
+</div>
+<main class="flex">
+    <div class="cart-container flex-col">
+        
+       
+    </div>
+    <div class="price-container flex-col">
+        <div class="coupan-code">
+            <div class="coupan-heading center">
+                Have any coupan code ?
+            </div>
+            <div class="coupan-input flex-col">
+                <input type="text">
+                <button>Apply</button>
+            </div>
+        </div>
+        <div class="payable-amt">
+            <div class="payable-heading center">
+                Total Amount 
+            </div>
+            <div class="payable-data flex-col">
+                <div class="total-amt payable-part flex">
+                    <h4>Total Amount</h4>
+                    <p>₹<span class="payable-price">0</span></p>
+                </div>
+                <div class="total-amt payable-part flex">
+                    <h4>(-) Discount</h4>
+                    <p>₹<span class="discounted-price">500</span></p>
+                </div>
+                <div class="total-amt payable-part flex">
+                    <h4>(+) Delivery</h4>
+                    <p>₹<span class="delivery-price">500</span></p>
+                </div>
+
+            </div>
+            <div class="overall-payable">
+                <div class=" payable-part flex">
+                    <h4>Total Amount</h4>
+                    <p>₹<span class="sum-payable-price">500</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+
+
+    if(localStorage.getItem("wcart")== null){
+    var cart = {}
+}
+    else{
+        var cart = JSON.parse(localStorage.getItem("wcart"))
+    }
+   
+
+
+    let cart_container = document.querySelector(".cart-container")
+    for(var item in cart) {
+        cart_container.innerHTML = cart_container.innerHTML + `<div class="cart-card flex">
+            <div class="cart-image">
+                <img src="${cart[item][0]}" alt="">
+            </div>
+            <div class="cart-detail">
+                <h4>${cart[item][3]}</h4>
+                    <div class="star">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <h2 class="cart-price">${cart[item][2]}</h2>
+                    
+            </div>
+            <div class="cart-quantity center">
+                <button class="minus"> - </button> <input type="text" value="1" class="quantity"> <button class="plus"> + </button>
+            </div>
+            <div class="act-btn center" >
+                <button>Proceed</button><button class= "remove-btn" id= "${item}">Remove</button>
+            </div>
+        </div>`
+      
+    }
+
+    let rem_btn = document.querySelectorAll(".remove-btn")
+    rem_btn.forEach((btn)=>{
+        btn.addEventListener("click", ()=>{
+            let prod = btn.id
+            delete cart[prod]
+            localStorage.setItem("wcart", JSON.stringify(cart));
+            location.reload();
+        })
+    })
+    let cart_card = document.querySelectorAll(".cart-card")
+    
+    cart_card.forEach((elem, index)=>{
+        let val = document.querySelectorAll(".quantity")[index].value
+        let plus = document.querySelectorAll(".plus")
+        let minus = document.querySelectorAll(".minus")
+    minus[index].addEventListener("click",()=>{
+        if(val[index]=== 1){
+            return
+        }
+        else{
+            val--
+            document.querySelectorAll(".quantity")[index].value = val
+            console.log(val)
+        }
+    })
+    plus[index].addEventListener("click",()=>{
+        val++
+        document.querySelectorAll(".quantity")[index].value = val
+        console.log(val)
+    })
+    })
+
+    let cart_allPrice = document.querySelectorAll(".cart-price")
+    let quantity = document.querySelectorAll(".quantity")
+    let sum = 0
+    
+    for(var i= 0; i< cart_allPrice.length; i++){
+        var price_num = Number.parseInt((cart_allPrice[i].innerText.slice(1, )))
+        sum += price_num
+        
+        
+    }
+    
+
+    let payable_price = document.querySelector(".payable-price").innerHTML = sum
+    let discounted_price = document.querySelector(".discounted-price").innerHTML = 0
+    let delivery_price = document.querySelector(".delivery-price").innerHTML = 0
+    let sum_payable_price = document.querySelector(".sum-payable-price").innerHTML = payable_price - discounted_price - delivery_price
+
+    
+
+
+</script>
+
+{% endblock %}

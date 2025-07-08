@@ -1,0 +1,25 @@
+.toPay{
+    min-height: 90vh;
+    width: 100%;
+    background-color: rgb(241, 241, 241);
+    gap: .8rem;
+    
+}
+
+
+.toPay p{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: rgb(66, 0, 0);
+}
+
+.toPay button{
+    padding: .8rem 1.3rem;
+    border: 1px solid rgb(83, 1, 1);
+    background-color: transparent;
+    text-transform: capitalize;
+    color: rgb(91, 1, 1);
+    font-weight: bold;
+    border-radius: 1rem;
+}
+

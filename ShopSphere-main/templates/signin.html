@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'form.css' %}?{% now 'U' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="full-view center">
+        
+        <div class="form-container container-form flex-col">
+            <h3 class="header">Sign In</h3>
+            <form action="signin" method="post" class="flex-col">
+                {% csrf_token %}
+                <div class="flex-col">
+                    <label for="username">Username</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="flex-col">
+                    <label for="password">Password</label>
+                    <input type="password" name="password">
+                </div>
+                <div><button type="submit">Submit</button></div>
+                <a href="/password_reset" style="color: red; text-decoration: underline;"><p>Forget Password ?</p></a>
+                <p>Don't have an account? <a href="signup">signup</a></p>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

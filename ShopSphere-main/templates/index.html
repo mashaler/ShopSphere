@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+{% endblock %}
+{% block body %}
+    <header>
+        <div class="slider-container flex">
+            <div class="slide flex-col">
+                <!-- <div class="slide-content flex-col">
+                    <h2>Programming</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate ipsa corrupti provident
+                        quaerat vel quos aliquid unde nostrum assumenda repellat totam modi, sit quod non nulla officiis
+                        dicta sequi veniam.</p>
+                    <button>View More</button>
+                </div> -->
+            </div>
+            <div class="slide">
+                <!-- <div class="slide-content flex-col">
+                    <h2>Cooking</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate ipsa corrupti provident
+                        quaerat vel quos aliquid unde nostrum assumenda repellat totam modi, sit quod non nulla officiis
+                        dicta sequi veniam.</p>
+                    <button>View More</button>
+                </div> -->
+            </div>
+            <div class="slide">
+                <!-- <div class="slide-content flex-col">
+                    <h2>Religious Talk</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate ipsa corrupti provident
+                        quaerat vel quos aliquid unde nostrum assumenda repellat totam modi, sit quod non nulla officiis
+                        dicta sequi veniam.</p>
+                    <button>View More</button>
+                </div> -->
+            </div>
+            <div class="slide">
+                <!-- <div class="slide-content flex-col">
+                    <h2>Spotrs</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate ipsa corrupti provident
+                        quaerat vel quos aliquid unde nostrum assumenda repellat totam modi, sit quod non nulla officiis
+                        dicta sequi veniam.</p>
+                    <button>View More</button>
+                </div> -->
+            </div>
+            <div class="slide">
+                <!-- <div class="slide-content flex-col">
+                    <h2>Financial Planning</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate ipsa corrupti provident
+                        quaerat vel quos aliquid unde nostrum assumenda repellat totam modi, sit quod non nulla officiis
+                        dicta sequi veniam.</p>
+                    <button>View More</button>
+                </div> -->
+            </div>
+        </div>
+    </header>
+    <div class="slider-indicator center">
+        <span class="circle fill"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+    </div>
+    <section class="features">
+        <div class="features-card">
+            <div class="upper-feature-card center">
+                <img src="/static/images/securepayment.png" alt="">
+            </div>
+            <div class="lower-feature-card center flex-col">
+                <h3>Easy & Secure Payment</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, distinctio!</p>
+            </div>
+        </div>
+        <div class="features-card">
+            <div class="upper-feature-card center">
+                <img src="/static/images/fastdelivery2.png" alt="">
+            </div>
+            <div class="lower-feature-card center flex-col">
+                <h3>Fast Delivery</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, distinctio!</p>
+            </div>
+        </div>
+        <div class="features-card">
+            <div class="upper-feature-card center">
+                <img src="/static/images/replacement.png" alt="">
+            </div>
+            <div class="lower-feature-card center flex-col">
+                <h3>7 Days Easy Return</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, distinctio!</p>
+            </div>
+        </div>
+        <div class="features-card">
+            <div class="upper-feature-card center">
+                <img src="/static/images/support.jpg" alt="">
+            </div>
+            <div class="lower-feature-card center flex-col">
+                <h3>24X7 Customer Support </h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, distinctio!</p>
+            </div>
+        </div>
+    </section>
+    <section class="new-arrival">
+        <div class="arrival-heading center">
+            <h3>New Arrival</h3>
+        </div>
+        <div class="arrivals-products grid">
+            {% for newProd in new %}
+            <div class="prod-cards" >
+                <div class="prod-image">
+                    <img src="./media/{{newProd.prod_image}}" alt="" class="imgpr{{newProd.prod_id}}">
+                </div>
+                <div class="prod-desc flex-col center">
+                    <h4><a href="detailpro/{{newProd.prod_slug}}" class="namepr{{newProd.prod_id}}">{{newProd.prod_name}}</a></h4>
+                    <div class="star">
+                        <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+                    </div>
+                    <h2 class="pricepr{{newProd.prod_id}}">₹{{newProd.prod_price}}</h2>
+                    <div class="cart-btn flex">
+                        <button class="add-cart" id="pr{{newProd.prod_id}}">cart</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+          
+        </div>
+    </section>
+    <section class="trending-slider">
+        <div class="discount-content flex-col center">
+            <h3>Get upto 50% Discount on Your First Order</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat animi ipsam architecto voluptates, enim
+                expedita omnis asperiores similique.</p>
+            <button><a href="#shop">Shop Now</a></button>
+        </div>
+    </section>
+    <div class="all-prod-heading" id="shop">
+        <h2>Featured Products</h2>
+    </div>
+    <section class="all-prod grid">
+
+        <div class="categories flex-col">
+            <div class="categories-content flex-col">
+                <h4>Price Filter</h4>
+                <div class="categories-menu flex-col ">
+
+                    <form action="/" class="center flex-col" id="sort-form" method="post">
+                        {% csrf_token %} 
+                        <div class="input-container"><input type="checkbox" name="checkbox" id="" class="sort-option" value="asc">Price low to high
+                        </div>
+                        <div class="input-container"><input type="checkbox" name="checkbox" id="" class="sort-option" value="desc">Price High to Low
+                        </div>
+                        <div class="input-container">
+                            <input type="hidden" name="sort" id="sort-val">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="categories-content flex-col">
+                <h4>Categories</h4>
+                <div class="categories-menu flex-col center">
+                    {% for cate in cat %}
+                    <div><a href="categories/{{cate}}">{{cate}}</a></div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="allProd-display grid">
+            {% for prod in all %}
+            
+            <div class="all-prod-cards" >
+                <div class="all-prod-image">
+                    <img src="./media/{{prod.prod_image}}" alt="" class="imgpr{{prod.prod_id}}">
+                </div>
+                <div class="all-prod-desc flex-col center">
+                    <h4><a href="detailpro/{{prod.prod_slug}}" class="namepr{{prod.prod_id}}">{{prod.prod_name}}</a></h4>
+                    <div class="star">
+                        <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+                    </div>
+                    <h2 class="pricepr{{prod.prod_id}}">₹{{prod.prod_price}}</h2>
+                    <div class="cart-btn flex">
+                        <button class="add-cart" id="pr{{prod.prod_id}}">cart</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="trending-store flex-col  center">
+        <div class="deal-heading flex">
+            <span class="round"></span>
+            <h2>Deal of the Day</h2>
+        </div>
+        <div class="trendslide-container">
+            <div class="deal-container center">
+                {% for trend in trending %}
+                
+                
+                <div class="deal-display flex">
+                    <div class="img-part">
+                        <img src="./media/{{trend.prod_image}}" alt="">
+                    </div>
+                    
+                    <div class="trend-prod-desc flex-col">
+                        <a href="/detailpro/{{trend.prod_slug}}"><h3>{{trend.prod_name}}</h3> </a>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sunt veritatis quibusdam porro
+                            voluptatibus sapiente cum, at iure rerum error.</p>
+                        <div class="star">
+                            <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+                        </div>
+                        <h2>₹{{trend.prod_price}}</h2>
+                        <a href="/detailpro/{{trend.prod_slug}}"><button>Shop Now</button></a>
+                        <div class="timer center">
+                            <div class="time center hour" >00</div>:
+                            <div class="time center minute" >00</div>:
+                            <div class="time center second" >00</div>
+                        </div>
+                    </div>
+                </div>
+           
+                {% endfor %}
+                <!-- <div class="deal-display flex">
+                    <div class="img-part">
+                        <img src="/static/images/track2.jpg" alt="">
+                    </div>
+                    <div class="trend-prod-desc flex-col">
+                        <h3>Nivaka Sellilo Best Track Pant for men2</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sunt veritatis quibusdam porro
+                            voluptatibus sapiente cum, at iure rerum error.</p>
+                        <div class="star">
+                            <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+                        </div>
+                        <h2>₹500/-</h2>
+                        <button>Shop Now</button>
+                        <div class="timer center">
+                            <div class="time center">00</div>:
+                            <div class="time center">00</div>:
+                            <div class="time center">00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="deal-display flex">
+                    <div class="img-part">
+                        <img src="/static/images/track2.jpg" alt="">
+                    </div>
+                    <div class="trend-prod-desc flex-col">
+                        <h3>Nivaka Sellilo Best Track Pant for men3</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sunt veritatis quibusdam porro
+                            voluptatibus sapiente cum, at iure rerum error.</p>
+                        <div class="star">
+                            <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+                        </div>
+                        <h2>₹500/-</h2>
+                        <button>Shop Now</button>
+                        <div class="timer center">
+                            <div class="time center">00</div>:
+                            <div class="time center">00</div>:
+                            <div class="time center">00</div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+    <div class="trend-slider-indicator center">
+        <span class="trendcircle fill"></span>
+        <span class="trendcircle"></span>
+        <span class="trendcircle"></span>
+    </div>
+    
+<script>
+    const prod =  "{{all}}"
+    console.log("after this")
+    console.log(prod)
+</script>
+<script src="{% static '/app.js' %}?{% now 'U' %}"></script>
+{% endblock %}
+</html>

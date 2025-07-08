@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'productpage.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+{% endblock %}
+{% block body %}
+<form action="order" method="post" id="orderForm">
+    {% csrf_token %}
+    <input type="hidden" name="product" value="{{detail.prod_id}}">
+    <input type="hidden" name="color" id="inputColor">
+    <input type="hidden" name="size" id="inputSize">
+    <input type="hidden" name="price" value="{{detail.prod_price}}">
+    <main class="grid">
+        <div class="image-part flex-col">
+            <div class="main-img center">
+                <img src="./media/{{detail.prod_image}}" alt="" class="imgpr{{detail.prod_id}}">
+
+            </div>
+        </div>
+        <div class="desc-part flex-col">
+            <div class="header-container flex-col">
+
+                <h2>{{detail.prod_name}}</h2>
+                <div class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+
+            </div>
+            <div class="price part flex">
+                <h4>Price</h4>
+                <div class="price-contain">
+                    <h2 class="pricepr{{detail.prod_id}}">₹{{detail.prod_price}}</h2>
+                </div>
+            </div>
+            <div class="detail-desc flex-col">
+
+
+                <div class="quantity part flex">
+                    <h4>quantity</h4>
+                    <div class="buttons flex"><button id="minus" type="button">-</button>
+                        
+                            <input type="text" value="1" name="prod_quantity" id="quantity">
+                        <button id="plus" type="button">+</button>
+                    </div>
+                </div>
+                <div class="colors part flex">
+                    <h4>color</h4>
+                    <div class="color-list flex">
+                        <span class="col" data-colr="red"></span>
+                        <span class="col" data-colr="green"></span>
+                        <span class="col" data-colr="blue"></span>
+                    </div>
+                </div>
+                <div class="size flex part">
+                    <h4>Size</h4>
+                    <div class="size-list flex">
+                        <span class="si">S</span><span class="si">M</span><span class="si">L</span><span
+                            class="si">XL</span><span class="si">XXL</span>
+                    </div>
+                </div>
+                <div class="detail part flex-col">
+                    <h4>Product Detail</h4>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non id distinctio, culpa assumenda
+                        illum animi
+                        explicabo debitis, modi nostrum ducimus quidem temporibus. Consectetur, natus cum.</p>
+                </div>
+            </div>
+
+            <div class="action-btn flex">
+                <button class="ProdCartBtn" id="pr{{detail.prod_id}}" type="button">Add to Cart</button>
+                <button type="submit">quick Buy</button>
+            </div>
+        </div>
+    </main>
+</form>
+
+
+<section class="rel-heading flex">
+    <span class="round"></span>
+    <h2>Related Products</h2>
+</section>
+
+
+<div class="allProd-display grid">
+    {% for prod in all %}
+
+    <div class="all-prod-cards">
+        <div class="all-prod-image">
+            <img src="./media/{{prod.prod_image}}" alt="" class="imgpr{{prod.prod_id}}">
+        </div>
+        <div class="all-prod-desc flex-col center">
+            <h4><a href="detailpro/{{prod.prod_slug}}">{{prod.prod_name}}</a></h4>
+            <div class="star">
+                <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span
+                    class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+            </div>
+            <h2 class="pricepr{{prod.prod_id}}">₹{{prod.prod_price}}</h2>
+            <div class="cart-btn flex">
+                <button class="add-cart" id="pr{{prod.prod_id}}">cart</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<section class="rel-heading flex">
+</section>
+
+<section class="review">
+    <div class="post-review">
+        <form action="/detailpro/{{detail.prod_slug}}" class="flex-col" method="post">
+            {% csrf_token %}
+            <h3>Add Your Valuable Feedback</h3>
+            <div>
+                <textarea name="feedback" id="" cols="30" rows="10"></textarea>
+                <input type="hidden" name="rating-no" id="ratingNum">
+                <div class="rating">
+                    <label for="star1" class="starLabel">&#9733;</label>
+                    <input type="text" value="1" class="starInput" id="star1">
+                    <label for="star2" class="starLabel">&#9733;</label>
+                    <input type="text" value="2" class="starInput" id="star2">
+                    <label for="star3" class="starLabel">&#9733;</label>
+                    <input type="text" value="3" class="starInput" id="star3">
+                    <label for="star4" class="starLabel">&#9733;</label>
+                    <input type="text" value="4" class="starInput" id="star4">
+                    <label for="star5" class="starLabel">&#9733;</label>
+                    <input type="text" value="5" class="starInput" id="star5">
+                </div>
+            </div>
+
+            <button type="submit">Post</button>
+        </form>
+    </div>
+    <div class="read-review flex-col">
+        {% for cmt in comment %}
+        <div class="single-review flex">
+            <div class="user-icon">
+                <img src="/static/images/user_vector.webp" alt="">
+            </div>
+            <div class="detail-review flex-col">
+                <span class="flex"><b>{{cmt.comment_user}} </b>
+                    <p>on</p>
+                    <div class="date">{{cmt.comment_date}}</div>
+                </span>
+                <p>{{cmt.comment_content}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+</body>
+
+
+
+<script>
+    const price = "{{prod.prod_price}}"
+</script>
+<script src="{% static '/product.js' %}?{% now 'U' %}"></script>
+
+{% endblock %}
+
+</html>

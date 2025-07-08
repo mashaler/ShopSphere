@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+{% endblock %}
+{% block body %}
+<section class="all-prod grid">
+
+    <div class="categories flex-col">
+        <div class="categories-content flex-col">
+            <h4>Price Filter</h4>
+            <div class="categories-menu flex-col ">
+
+                <form action="/" class="center flex-col" id="sort-form" method="post">
+                    {% csrf_token %} 
+                    <div class="input-container"><input type="checkbox" name="checkbox" id="" class="sort-option" value="asc">Price low to high
+                    </div>
+                    <div class="input-container"><input type="checkbox" name="checkbox" id="" class="sort-option" value="desc">Price High to Low
+                    </div>
+                    <div class="input-container">
+                        <input type="hidden" name="sort" id="sort-val">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="categories-content flex-col">
+            <h4>Categories</h4>
+            <div class="categories-menu flex-col center">
+                {% for cate in cat %}
+                <div><a href="categories/{{cate}}" value = {{cate}}>{{cate}}</a></div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+    <div class="allProd-display grid">
+        {% for prod in all %}
+        
+        <div class="all-prod-cards" >
+            <div class="all-prod-image">
+                <img src="./media/{{prod.prod_image}}" alt="" class="imgpr{{prod.prod_id}}">
+            </div>
+            <div class="all-prod-desc flex-col center">
+                <h4><a href="detailpro/{{prod.prod_slug}}">{{prod.prod_name}}</a></h4>
+                <div class="star">
+                    <span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span><span class="starin">&#9733;</span>
+                </div>
+                <h2 class="pricepr{{prod.prod_id}}">₹{{prod.prod_price}}</h2>
+                <div class="cart-btn flex">
+                    <button class="add-cart" id="pr{{prod.prod_id}}">cart</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<script>
+    let price_val = document.querySelectorAll(".sort-option")
+    let sort_val = document.querySelector("#sort-val")
+    let sort_form = document.querySelector("#sort-form")
+    price_val.forEach((inpt)=>{
+        inpt.addEventListener("change", ()=>{
+            if(inpt.checked){
+                let val = inpt.value
+                sort_val.value = val
+                sort_form.submit()
+            }
+            
+        })
+    })
+</script>
+{% endblock %}
